@@ -27,8 +27,9 @@ project.archivesBaseName = POM_ARTIFACT_ID
 
 release {
   tagTemplate = 'v${version}'
-  versionPropertyFile = '../gradle.properties'
+  versionPropertyFile = 'gradle.properties'
   versionProperties = ['VERSION_NAME']
+  newVersionCommitMessage = '[Gradle Release Plugin] - LIBRARY new version commit:'
 }
 
 afterReleaseBuild.dependsOn uploadArchives
