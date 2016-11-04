@@ -3,7 +3,7 @@ package com.mapzen.android.core;
 import com.mapzen.android.graphics.GraphicsModule;
 import com.mapzen.android.graphics.MapInitializer;
 import com.mapzen.android.graphics.MapView;
-import com.mapzen.android.routing.MapzenRouter;
+import com.mapzen.android.search.MapzenSearch;
 
 import android.content.Context;
 
@@ -14,38 +14,40 @@ import dagger.Component;
 /**
  * Manages library dependencies.
  */
-class DependencyInjector {
+class CoreDependencyInjector {
   /**
    * Library component interface.
    */
-  @Singleton @Component(modules = { AndroidModule.class, CommonModule.class, GraphicsModule.class })
+  @Singleton @Component(modules = { CoreAndroidModule.class, GraphicsModule.class })
   public interface LibraryComponent {
-    void inject(MapzenRouter router);
+    void inject(MapView mapView);
+    void inject(MapInitializer mapInitializer);
+    void inject(MapzenSearch search);
   }
 
   private LibraryComponent component;
 
-  private static DependencyInjector instance;
+  private static CoreDependencyInjector instance;
 
   /**
    * Creates a new instance of the dependency injection framework if not already initialized.
    */
   static void createInstance(Context context) {
     if (instance == null) {
-      instance = new DependencyInjector(context);
+      instance = new CoreDependencyInjector(context);
     }
   }
 
   /**
    * Returns the singleton instance of the dependency injection framework.
    */
-  static DependencyInjector getInstance() {
+  static CoreDependencyInjector getInstance() {
     return instance;
   }
 
-  private DependencyInjector(Context context) {
-    component = DaggerDependencyInjector_LibraryComponent.builder()
-        .androidModule(new AndroidModule(context))
+  private CoreDependencyInjector(Context context) {
+    component = DaggerCoreDependencyInjector_LibraryComponent.builder()
+        .coreAndroidModule(new CoreAndroidModule(context))
         .build();
   }
 

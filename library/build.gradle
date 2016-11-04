@@ -98,13 +98,8 @@ assemble.doFirst {
 
 dependencies {
   compile 'com.android.support:appcompat-v7:24.2.1'
-  compile "com.mapzen.tangram:tangram:${tangram_version}"
-  compile "com.mapzen.android:lost:${lost_version}"
-  compile "com.mapzen.android:pelias-android-sdk:${pelias_version}"
+  compile project(path: ':core')
   compile 'com.mapzen:on-the-road:1.0.0'
-  compile 'com.google.dagger:dagger:2.0'
-  compile 'javax.annotation:javax.annotation-api:1.2'
-  compile project(':places')
 
   annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
 
@@ -113,6 +108,7 @@ dependencies {
   testCompile 'org.powermock:powermock:1.6.4'
   testCompile 'org.powermock:powermock-module-junit4:1.6.4'
   testCompile 'org.powermock:powermock-api-mockito:1.6.4'
+
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

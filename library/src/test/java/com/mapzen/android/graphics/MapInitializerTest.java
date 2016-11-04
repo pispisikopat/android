@@ -1,6 +1,6 @@
 package com.mapzen.android.graphics;
 
-import com.mapzen.android.core.DI;
+import com.mapzen.android.core.CoreDI;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class MapInitializerTest {
   private MapInitializer mapInitializer;
 
   @Before public void setUp() throws Exception {
-    DI.init(getMockContext());
+    CoreDI.init(getMockContext());
     mapInitializer = new MapInitializer();
   }
 

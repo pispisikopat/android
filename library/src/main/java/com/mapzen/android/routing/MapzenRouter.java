@@ -1,5 +1,6 @@
 package com.mapzen.android.routing;
 
+import com.mapzen.android.core.CoreDI;
 import com.mapzen.android.core.DI;
 import com.mapzen.valhalla.RouteCallback;
 import com.mapzen.valhalla.Router;
